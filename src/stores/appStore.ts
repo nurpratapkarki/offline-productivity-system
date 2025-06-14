@@ -1,4 +1,3 @@
-
 import { create } from 'zustand';
 import { persist } from 'zustand/middleware';
 
@@ -37,7 +36,7 @@ interface AppState {
   
   // Notes
   notes: Note[];
-  addNote: (note: Omit<Note, 'id' | 'createdAt' | 'updatedAt'>) => void;
+  addNote: (note: Omit<Note, 'id' | 'createdAt' | 'updatedAt'>) => string;
   updateNote: (id: string, updates: Partial<Note>) => void;
   deleteNote: (id: string) => void;
   
@@ -63,14 +62,18 @@ export const useAppStore = create<AppState>()(
       setCurrentPage: (page) => set({ currentPage: page }),
       
       notes: [],
-      addNote: (note) => set((state) => ({
-        notes: [...state.notes, {
+      addNote: (note) => {
+        const newNote = {
           ...note,
           id: crypto.randomUUID(),
           createdAt: new Date(),
           updatedAt: new Date(),
-        }]
-      })),
+        };
+        set((state) => ({
+          notes: [...state.notes, newNote]
+        }));
+        return newNote.id;
+      },
       updateNote: (id, updates) => set((state) => ({
         notes: state.notes.map(note => 
           note.id === id 

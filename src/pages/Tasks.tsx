@@ -1,6 +1,6 @@
 
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import { Kanban } from "lucide-react";
+import React from 'react';
+import KanbanBoard from '@/components/tasks/KanbanBoard';
 
 const Tasks = () => {
   return (
@@ -12,25 +12,9 @@ const Tasks = () => {
         </div>
       </div>
 
-      <Card className="border-2 border-dashed border-slate-300">
-        <CardHeader className="text-center">
-          <div className="mx-auto w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center mb-4">
-            <Kanban className="w-6 h-6 text-green-600" />
-          </div>
-          <CardTitle>Kanban Board Coming Soon</CardTitle>
-          <CardDescription>
-            Drag-and-drop task management with three columns: To Do, Doing, Done
-          </CardDescription>
-        </CardHeader>
-        <CardContent className="text-center">
-          <div className="space-y-2 text-sm text-slate-600">
-            <p>• Drag-and-drop functionality</p>
-            <p>• Priority levels and due dates</p>
-            <p>• Task descriptions and checklists</p>
-            <p>• Persistent storage across sessions</p>
-          </div>
-        </CardContent>
-      </Card>
+      <div className="h-[calc(100vh-200px)]">
+        <KanbanBoard />
+      </div>
     </div>
   );
 };

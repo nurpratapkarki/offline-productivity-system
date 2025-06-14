@@ -1,6 +1,6 @@
 
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import { Network } from "lucide-react";
+import React from 'react';
+import KnowledgeGraph from '@/components/graph/KnowledgeGraph';
 
 const Graph = () => {
   return (
@@ -12,25 +12,7 @@ const Graph = () => {
         </div>
       </div>
 
-      <Card className="border-2 border-dashed border-slate-300">
-        <CardHeader className="text-center">
-          <div className="mx-auto w-12 h-12 bg-orange-100 rounded-lg flex items-center justify-center mb-4">
-            <Network className="w-6 h-6 text-orange-600" />
-          </div>
-          <CardTitle>Knowledge Graph Coming Soon</CardTitle>
-          <CardDescription>
-            Interactive visualization showing how your ideas connect
-          </CardDescription>
-        </CardHeader>
-        <CardContent className="text-center">
-          <div className="space-y-2 text-sm text-slate-600">
-            <p>• Interactive force-directed graph</p>
-            <p>• Auto-detect links between notes</p>
-            <p>• Tag-based clustering</p>
-            <p>• Zoom and pan navigation</p>
-          </div>
-        </CardContent>
-      </Card>
+      <KnowledgeGraph />
     </div>
   );
 };

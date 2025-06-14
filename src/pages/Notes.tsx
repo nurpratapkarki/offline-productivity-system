@@ -1,8 +1,11 @@
 
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import { FileText, Plus } from "lucide-react";
+import React, { useState } from 'react';
+import MarkdownEditor from '@/components/notes/MarkdownEditor';
+import NotesList from '@/components/notes/NotesList';
 
 const Notes = () => {
+  const [selectedNoteId, setSelectedNoteId] = useState<string>('');
+
   return (
     <div className="space-y-6">
       <div className="flex items-center justify-between">
@@ -12,25 +15,20 @@ const Notes = () => {
         </div>
       </div>
 
-      <Card className="border-2 border-dashed border-slate-300">
-        <CardHeader className="text-center">
-          <div className="mx-auto w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center mb-4">
-            <FileText className="w-6 h-6 text-blue-600" />
-          </div>
-          <CardTitle>Markdown Editor Coming Soon</CardTitle>
-          <CardDescription>
-            Rich text editing with live preview, syntax highlighting, and autosave
-          </CardDescription>
-        </CardHeader>
-        <CardContent className="text-center">
-          <div className="space-y-2 text-sm text-slate-600">
-            <p>• Real-time Markdown preview</p>
-            <p>• Syntax highlighting for code blocks</p>
-            <p>• Auto-linking between notes</p>
-            <p>• Local autosave every few seconds</p>
-          </div>
-        </CardContent>
-      </Card>
+      <div className="grid grid-cols-1 lg:grid-cols-4 gap-6 h-[calc(100vh-200px)]">
+        {/* Notes List */}
+        <div className="lg:col-span-1">
+          <NotesList 
+            onSelectNote={setSelectedNoteId} 
+            selectedNoteId={selectedNoteId}
+          />
+        </div>
+
+        {/* Editor */}
+        <div className="lg:col-span-3">
+          <MarkdownEditor noteId={selectedNoteId} />
+        </div>
+      </div>
     </div>
   );
 };
