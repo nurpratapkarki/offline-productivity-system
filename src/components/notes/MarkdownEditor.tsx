@@ -5,8 +5,9 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Textarea } from '@/components/ui/textarea';
 import { useAppStore } from '@/stores/appStore';
-import { Save, Eye, Edit, Trash2, Plus } from 'lucide-react';
+import { Save, Eye, Edit, Trash2, Plus, Lock } from 'lucide-react';
 import { useToast } from '@/hooks/use-toast';
+import EncryptionControls from './EncryptionControls';
 
 interface MarkdownEditorProps {
   noteId?: string;
@@ -19,6 +20,8 @@ const MarkdownEditor: React.FC<MarkdownEditorProps> = ({ noteId }) => {
   const [title, setTitle] = useState('');
   const [isPreview, setIsPreview] = useState(false);
   const [currentNote, setCurrentNote] = useState(noteId);
+
+  const currentNoteData = currentNote ? notes.find(n => n.id === currentNote) : null;
 
   useEffect(() => {
     if (currentNote) {
@@ -84,6 +87,39 @@ const MarkdownEditor: React.FC<MarkdownEditorProps> = ({ noteId }) => {
     }
   };
 
+  // Show encrypted note placeholder
+  if (currentNoteData?.isEncrypted) {
+    return (
+      <div className="space-y-4">
+        <div className="flex items-center justify-between">
+          <div className="flex items-center space-x-2">
+            <Button onClick={handleNewNote} size="sm" variant="outline">
+              <Plus className="w-4 h-4 mr-2" />
+              New Note
+            </Button>
+          </div>
+          <div className="flex items-center space-x-2">
+            <EncryptionControls noteId={currentNote!} isEncrypted={true} />
+            <Button onClick={handleDelete} size="sm" variant="destructive">
+              <Trash2 className="w-4 h-4 mr-2" />
+              Delete
+            </Button>
+          </div>
+        </div>
+
+        <div className="text-center py-12">
+          <Lock className="w-16 h-16 text-gray-400 mx-auto mb-4" />
+          <h3 className="text-lg font-medium text-gray-900 mb-2">
+            {currentNoteData.title}
+          </h3>
+          <p className="text-gray-600">
+            This note is encrypted. Use the decrypt button to view its contents.
+          </p>
+        </div>
+      </div>
+    );
+  }
+
   return (
     <div className="space-y-4">
       {/* Toolbar */}
@@ -108,10 +144,13 @@ const MarkdownEditor: React.FC<MarkdownEditorProps> = ({ noteId }) => {
             Save
           </Button>
           {currentNote && (
-            <Button onClick={handleDelete} size="sm" variant="destructive">
-              <Trash2 className="w-4 h-4 mr-2" />
-              Delete
-            </Button>
+            <>
+              <EncryptionControls noteId={currentNote} isEncrypted={false} />
+              <Button onClick={handleDelete} size="sm" variant="destructive">
+                <Trash2 className="w-4 h-4 mr-2" />
+                Delete
+              </Button>
+            </>
           )}
         </div>
       </div>
