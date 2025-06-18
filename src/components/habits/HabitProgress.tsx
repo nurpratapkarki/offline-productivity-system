@@ -176,7 +176,7 @@ const HabitProgress: React.FC = () => {
                       <h4 className="font-medium">{habit.name}</h4>
                     </div>
                     {stats.currentStreak >= 7 && (
-                      <Star className="w-5 h-5 text-yellow-500" title="Week streak!" />
+                      <Star className="w-5 h-5 text-yellow-500" />
                     )}
                   </div>
                   
