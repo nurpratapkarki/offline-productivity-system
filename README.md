@@ -1,40 +1,32 @@
-# Welcome to your Lovable project
+# Offline Productivity System
 
 ## Project info
 
-**URL**: https://lovable.dev/projects/1f4e5f3c-8966-4bf8-a8ec-1e593bfcc4bd
+A modern productivity application built with React, TypeScript, and Vite.
 
-## How can I edit this code?
+## How to run this project
 
-There are several ways of editing your application.
+**Local Development**
 
-**Use Lovable**
-
-Simply visit the [Lovable Project](https://lovable.dev/projects/1f4e5f3c-8966-4bf8-a8ec-1e593bfcc4bd) and start prompting.
-
-Changes made via Lovable will be committed automatically to this repo.
-
-**Use your preferred IDE**
-
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
-
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
+To run this project locally, you need Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
 
 Follow these steps:
 
 ```sh
-# Step 1: Clone the repository using the project's Git URL.
+# Step 1: Clone the repository
 git clone <YOUR_GIT_URL>
 
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
+# Step 2: Navigate to the project directory
+cd offline-productivity-system
 
-# Step 3: Install the necessary dependencies.
-npm i
+# Step 3: Install the necessary dependencies
+npm install
 
-# Step 4: Start the development server with auto-reloading and an instant preview.
+# Step 4: Start the development server
 npm run dev
 ```
+
+**Other Development Options**
 
 **Edit a file directly in GitHub**
 
@@ -60,14 +52,20 @@ This project is built with:
 - shadcn-ui
 - Tailwind CSS
 
-## How can I deploy this project?
+## How to deploy this project
 
-Simply open [Lovable](https://lovable.dev/projects/1f4e5f3c-8966-4bf8-a8ec-1e593bfcc4bd) and click on Share -> Publish.
+This project can be deployed to various platforms:
 
-## Can I connect a custom domain to my Lovable project?
+- **Vercel**: Connect your GitHub repository to Vercel for automatic deployments
+- **Netlify**: Deploy directly from your Git repository
+- **GitHub Pages**: Use GitHub Actions to build and deploy
+- **Other platforms**: Any platform that supports static site hosting
 
-Yes, you can!
+## Available Scripts
 
-To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
+- `npm run dev` - Start development server
+- `npm run build` - Build for production
+- `npm run preview` - Preview production build locally
+- `npm run lint` - Run ESLint
 
-Read more here: [Setting up a custom domain](https://docs.lovable.dev/tips-tricks/custom-domain#step-by-step-guide)
+
