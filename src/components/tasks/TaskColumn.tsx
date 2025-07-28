@@ -18,10 +18,10 @@ const TaskColumn: React.FC<TaskColumnProps> = ({ id, title, tasks }) => {
 
   const getColumnColor = (columnId: string) => {
     switch (columnId) {
-      case 'todo': return 'border-blue-200 bg-blue-50';
-      case 'doing': return 'border-yellow-200 bg-yellow-50';
-      case 'done': return 'border-green-200 bg-green-50';
-      default: return 'border-gray-200 bg-gray-50';
+      case 'todo': return 'border-blue-200 bg-blue-50 dark:border-blue-800 dark:bg-blue-950';
+      case 'doing': return 'border-yellow-200 bg-yellow-50 dark:border-yellow-800 dark:bg-yellow-950';
+      case 'done': return 'border-green-200 bg-green-50 dark:border-green-800 dark:bg-green-950';
+      default: return 'border-border bg-muted';
     }
   };
 
@@ -30,7 +30,7 @@ const TaskColumn: React.FC<TaskColumnProps> = ({ id, title, tasks }) => {
       <CardHeader className="pb-3">
         <CardTitle className="text-lg flex items-center justify-between">
           {title}
-          <span className="text-sm bg-white rounded-full px-2 py-1">
+          <span className="text-sm bg-background border rounded-full px-2 py-1">
             {tasks.length}
           </span>
         </CardTitle>

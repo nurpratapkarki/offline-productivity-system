@@ -88,14 +88,14 @@ const HabitPlan: React.FC = () => {
         </CardHeader>
         <CardContent>
           {!isCreating ? (
-            <Button onClick={() => setIsCreating(true)} className="w-full">
+            <Button onClick={() => setIsCreating(true)} className="w-full" size="lg">
               <Plus className="w-4 h-4 mr-2" />
               Create New Habit Plan
             </Button>
           ) : (
             <div className="space-y-4">
               <div>
-                <label className="text-sm font-medium">Habit Name *</label>
+                <label className="text-sm font-medium text-foreground">Habit Name *</label>
                 <Input
                   placeholder="e.g., Morning Meditation"
                   value={newHabit.name || ''}
@@ -104,7 +104,7 @@ const HabitPlan: React.FC = () => {
               </div>
 
               <div>
-                <label className="text-sm font-medium">Description & Goal</label>
+                <label className="text-sm font-medium text-foreground">Description & Goal</label>
                 <Textarea
                   placeholder="Describe what you want to achieve and why..."
                   value={newHabit.description || ''}
@@ -114,7 +114,7 @@ const HabitPlan: React.FC = () => {
 
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div>
-                  <label className="text-sm font-medium">Cue (Trigger)</label>
+                  <label className="text-sm font-medium text-foreground">Cue (Trigger)</label>
                   <Input
                     placeholder="e.g., After morning coffee"
                     value={newHabit.cue || ''}
@@ -122,7 +122,7 @@ const HabitPlan: React.FC = () => {
                   />
                 </div>
                 <div>
-                  <label className="text-sm font-medium">Reward</label>
+                  <label className="text-sm font-medium text-foreground">Reward</label>
                   <Input
                     placeholder="e.g., Check phone for 5 minutes"
                     value={newHabit.reward || ''}
@@ -132,30 +132,35 @@ const HabitPlan: React.FC = () => {
               </div>
 
               <div>
-                <label className="text-sm font-medium block mb-2">Difficulty Level</label>
-                <div className="flex space-x-2">
+                <label className="text-sm font-medium text-foreground block mb-2">Difficulty Level</label>
+                <div className="inline-flex h-10 items-center justify-center rounded-md bg-muted p-1 text-muted-foreground">
                   {difficulties.map((diff) => (
-                    <Button
+                    <button
                       key={diff.id}
-                      variant={newHabit.difficulty === diff.id ? 'default' : 'outline'}
-                      size="sm"
+                      className={`inline-flex items-center justify-center whitespace-nowrap rounded-sm px-3 py-1.5 text-sm font-medium ring-offset-background transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 ${
+                        newHabit.difficulty === diff.id
+                          ? 'bg-background text-foreground shadow-sm'
+                          : 'hover:bg-background/50 hover:text-foreground'
+                      }`}
                       onClick={() => setNewHabit(prev => ({ ...prev, difficulty: diff.id }))}
                     >
                       {diff.label}
-                      <span className="text-xs ml-1">({diff.description})</span>
-                    </Button>
+                      <span className="text-xs ml-1 opacity-70">({diff.description})</span>
+                    </button>
                   ))}
                 </div>
               </div>
 
               <div>
-                <label className="text-sm font-medium block mb-2">Color</label>
+                <label className="text-sm font-medium text-foreground block mb-2">Color</label>
                 <div className="flex space-x-2">
                   {colors.map((color) => (
                     <button
                       key={color}
-                      className={`w-8 h-8 rounded-full border-2 ${
-                        newHabit.color === color ? 'border-gray-800' : 'border-gray-300'
+                      className={`w-8 h-8 rounded-full border-2 transition-all ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 ${
+                        newHabit.color === color
+                          ? 'border-foreground shadow-sm ring-2 ring-ring ring-offset-2'
+                          : 'border-border hover:border-muted-foreground hover:shadow-sm'
                       }`}
                       style={{ backgroundColor: color }}
                       onClick={() => setNewHabit(prev => ({ ...prev, color }))}
@@ -186,16 +191,17 @@ const HabitPlan: React.FC = () => {
         <CardContent>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             {habitTemplates.map((template, index) => (
-              <div key={index} className="p-4 border rounded-lg hover:bg-gray-50">
+              <div key={index} className="p-4 border rounded-lg hover:bg-accent transition-colors">
                 <h4 className="font-medium">{template.name}</h4>
-                <div className="text-sm text-gray-600 mt-2 space-y-1">
+                <div className="text-sm text-muted-foreground mt-2 space-y-1">
                   <div><strong>Cue:</strong> {template.cue}</div>
                   <div><strong>Reward:</strong> {template.reward}</div>
                   <div><strong>Time:</strong> {template.time}</div>
                 </div>
                 <Button
                   size="sm"
-                  className="mt-2"
+                  variant="outline"
+                  className="mt-2 w-full"
                   onClick={() => {
                     setNewHabit({
                       name: template.name,
@@ -207,6 +213,7 @@ const HabitPlan: React.FC = () => {
                     setIsCreating(true);
                   }}
                 >
+                  <Plus className="w-3 h-3 mr-2" />
                   Use Template
                 </Button>
               </div>
@@ -232,7 +239,7 @@ const HabitPlan: React.FC = () => {
                     />
                     <div>
                       <h4 className="font-medium">{habit.name}</h4>
-                      <p className="text-sm text-gray-500">Current streak: {habit.streak} days</p>
+                      <p className="text-sm text-muted-foreground">Current streak: {habit.streak} days</p>
                     </div>
                   </div>
                   <Badge variant="outline">

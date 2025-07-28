@@ -130,7 +130,7 @@ const DataManager = () => {
         <DialogContent>
           <DialogHeader>
             <DialogTitle className="flex items-center">
-              <AlertTriangle className="w-5 h-5 mr-2 text-red-500" />
+              <AlertTriangle className="w-5 h-5 mr-2 text-red-500 dark:text-red-400" />
               Clear All Data
             </DialogTitle>
             <DialogDescription>

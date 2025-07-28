@@ -30,8 +30,8 @@ const HabitList: React.FC = () => {
   if (habits.length === 0) {
     return (
       <div className="text-center py-8">
-        <p className="text-gray-600">No habits yet</p>
-        <p className="text-sm text-gray-500">Add your first habit to start tracking</p>
+        <p className="text-muted-foreground">No habits yet</p>
+        <p className="text-sm text-muted-foreground">Add your first habit to start tracking</p>
       </div>
     );
   }
@@ -44,7 +44,7 @@ const HabitList: React.FC = () => {
         return (
           <div
             key={habit.id}
-            className="flex items-center justify-between p-3 border rounded-lg hover:bg-gray-50"
+            className="flex items-center justify-between p-3 border rounded-lg hover:bg-accent"
           >
             <div className="flex items-center space-x-3">
               <div
@@ -53,7 +53,7 @@ const HabitList: React.FC = () => {
               />
               <div>
                 <h4 className="font-medium">{habit.name}</h4>
-                <p className="text-sm text-gray-500">
+                <p className="text-sm text-muted-foreground">
                   Streak: {habit.streak} days
                 </p>
               </div>
@@ -71,7 +71,7 @@ const HabitList: React.FC = () => {
                 variant="ghost"
                 size="sm"
                 onClick={() => handleDeleteHabit(habit.id)}
-                className="hover:bg-red-100"
+                className="hover:bg-red-100 hover:text-red-600 dark:hover:bg-red-950 dark:hover:text-red-400 transition-colors"
               >
                 <Trash2 className="w-4 h-4" />
               </Button>

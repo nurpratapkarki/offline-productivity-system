@@ -59,9 +59,9 @@ const HabitProgress: React.FC = () => {
       <Card className="h-96">
         <CardContent className="flex items-center justify-center h-full">
           <div className="text-center">
-            <Trophy className="w-12 h-12 text-gray-400 mx-auto mb-4" />
-            <p className="text-gray-600">No progress to show yet</p>
-            <p className="text-sm text-gray-500">Start executing habits to see your progress</p>
+            <Trophy className="w-12 h-12 text-muted-foreground mx-auto mb-4" />
+            <p className="text-muted-foreground">No progress to show yet</p>
+            <p className="text-sm text-muted-foreground opacity-75">Start executing habits to see your progress</p>
           </div>
         </CardContent>
       </Card>
@@ -78,7 +78,7 @@ const HabitProgress: React.FC = () => {
               <Trophy className="w-5 h-5 text-yellow-600" />
               <div>
                 <p className="text-2xl font-bold">{bestStreak}</p>
-                <p className="text-sm text-gray-600">Best Streak</p>
+                <p className="text-sm text-muted-foreground">Best Streak</p>
               </div>
             </div>
           </CardContent>
@@ -90,7 +90,7 @@ const HabitProgress: React.FC = () => {
               <Target className="w-5 h-5 text-green-600" />
               <div>
                 <p className="text-2xl font-bold">{totalSessions}</p>
-                <p className="text-sm text-gray-600">Total Sessions</p>
+                <p className="text-sm text-muted-foreground">Total Sessions</p>
               </div>
             </div>
           </CardContent>
@@ -99,10 +99,10 @@ const HabitProgress: React.FC = () => {
         <Card>
           <CardContent className="p-4">
             <div className="flex items-center space-x-2">
-              <TrendingUp className="w-5 h-5 text-blue-600" />
+              <TrendingUp className="w-5 h-5 text-blue-600 dark:text-blue-400" />
               <div>
                 <p className="text-2xl font-bold">{avgCompletionRate}%</p>
-                <p className="text-sm text-gray-600">Avg. Rate (30d)</p>
+                <p className="text-sm text-muted-foreground">Avg. Rate (30d)</p>
               </div>
             </div>
           </CardContent>
@@ -111,12 +111,12 @@ const HabitProgress: React.FC = () => {
         <Card>
           <CardContent className="p-4">
             <div className="flex items-center space-x-2">
-              <Calendar className="w-5 h-5 text-purple-600" />
+              <Calendar className="w-5 h-5 text-purple-600 dark:text-purple-400" />
               <div>
                 <p className="text-2xl font-bold">
                   {weeklyData[weeklyData.length - 1]?.completed || 0}
                 </p>
-                <p className="text-sm text-gray-600">Today's Done</p>
+                <p className="text-sm text-muted-foreground">Today's Done</p>
               </div>
             </div>
           </CardContent>
@@ -143,14 +143,14 @@ const HabitProgress: React.FC = () => {
                 />
                 <div className="mt-2 text-center">
                   <div className="text-xs font-medium">{day.day}</div>
-                  <div className="text-xs text-gray-500">
+                  <div className="text-xs text-muted-foreground">
                     {day.completed}/{day.total}
                   </div>
                 </div>
               </div>
             ))}
           </div>
-          <div className="mt-4 text-center text-sm text-gray-600">
+          <div className="mt-4 text-center text-sm text-muted-foreground">
             Daily completion rate over the last 7 days
           </div>
         </CardContent>
@@ -182,16 +182,16 @@ const HabitProgress: React.FC = () => {
                   
                   <div className="grid grid-cols-3 gap-4 text-sm">
                     <div className="text-center">
-                      <p className="text-2xl font-bold text-blue-600">{stats.currentStreak}</p>
-                      <p className="text-gray-600">Current Streak</p>
+                      <p className="text-2xl font-bold text-blue-600 dark:text-blue-400">{stats.currentStreak}</p>
+                      <p className="text-muted-foreground">Current Streak</p>
                     </div>
                     <div className="text-center">
-                      <p className="text-2xl font-bold text-green-600">{stats.totalSessions}</p>
-                      <p className="text-gray-600">Total Sessions</p>
+                      <p className="text-2xl font-bold text-green-600 dark:text-green-400">{stats.totalSessions}</p>
+                      <p className="text-muted-foreground">Total Sessions</p>
                     </div>
                     <div className="text-center">
-                      <p className="text-2xl font-bold text-purple-600">{stats.completionRate}%</p>
-                      <p className="text-gray-600">30-day Rate</p>
+                      <p className="text-2xl font-bold text-purple-600 dark:text-purple-400">{stats.completionRate}%</p>
+                      <p className="text-muted-foreground">30-day Rate</p>
                     </div>
                   </div>
                 </div>

@@ -21,8 +21,8 @@ const Notes = () => {
     <div className="space-y-6">
       <div className="flex items-center justify-between">
         <div>
-          <h1 className="text-3xl font-bold text-slate-800">Notes</h1>
-          <p className="text-slate-600 mt-2">Capture your thoughts with Markdown</p>
+          <h1 className="text-3xl font-bold text-foreground">Notes</h1>
+          <p className="text-muted-foreground mt-2">Capture your thoughts with Markdown</p>
         </div>
         
         <div className="flex items-center space-x-2">
@@ -47,7 +47,7 @@ const Notes = () => {
 
       {viewMode === 'graph' && (
         <div className="flex items-center space-x-2">
-          <span className="text-sm text-gray-600">Graph Mode:</span>
+          <span className="text-sm text-muted-foreground">Graph Mode:</span>
           {modes.map((mode) => {
             const Icon = mode.icon;
             return (

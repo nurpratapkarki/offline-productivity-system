@@ -31,9 +31,9 @@ const TaskCard: React.FC<TaskCardProps> = ({ task, isDragging = false }) => {
 
   const getPriorityColor = (priority: Task['priority']) => {
     switch (priority) {
-      case 'high': return 'text-red-600 bg-red-100';
-      case 'medium': return 'text-yellow-600 bg-yellow-100';
-      case 'low': return 'text-green-600 bg-green-100';
+      case 'high': return 'text-red-600 bg-red-100 dark:text-red-400 dark:bg-red-950';
+      case 'medium': return 'text-yellow-600 bg-yellow-100 dark:text-yellow-400 dark:bg-yellow-950';
+      case 'low': return 'text-green-600 bg-green-100 dark:text-green-400 dark:bg-green-950';
     }
   };
 
@@ -48,7 +48,7 @@ const TaskCard: React.FC<TaskCardProps> = ({ task, isDragging = false }) => {
       style={style}
       {...attributes}
       {...listeners}
-      className="cursor-grab active:cursor-grabbing hover:shadow-md transition-shadow"
+      className="cursor-grab active:cursor-grabbing hover:shadow-md hover:bg-accent/50 transition-all duration-200"
     >
       <CardContent className="p-3">
         <div className="flex items-start justify-between mb-2">
@@ -57,14 +57,14 @@ const TaskCard: React.FC<TaskCardProps> = ({ task, isDragging = false }) => {
             variant="ghost"
             size="sm"
             onClick={handleDelete}
-            className="h-6 w-6 p-0 hover:bg-red-100"
+            className="h-6 w-6 p-0 hover:bg-red-100 hover:text-red-600 dark:hover:bg-red-950 dark:hover:text-red-400 transition-colors"
           >
             <Trash2 className="w-3 h-3" />
           </Button>
         </div>
         
         {task.description && (
-          <p className="text-xs text-gray-600 mb-2 line-clamp-2">
+          <p className="text-xs text-muted-foreground mb-2 line-clamp-2">
             {task.description}
           </p>
         )}
@@ -75,7 +75,7 @@ const TaskCard: React.FC<TaskCardProps> = ({ task, isDragging = false }) => {
             {task.priority}
           </span>
           
-          <div className="flex items-center text-xs text-gray-500">
+          <div className="flex items-center text-xs text-muted-foreground">
             <Calendar className="w-3 h-3 mr-1" />
             {new Date(task.createdAt).toLocaleDateString()}
           </div>

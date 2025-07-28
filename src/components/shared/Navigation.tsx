@@ -1,18 +1,23 @@
 
-import React from 'react';
+import React, { useState } from 'react';
 import { useAppStore } from '@/stores/appStore';
 import { Button } from '@/components/ui/button';
-import { 
-  LayoutDashboard, 
-  FileText, 
-  Kanban, 
-  Heart, 
+import { Tabs, TabsList, TabsTrigger } from '@/components/ui/tabs';
+import {
+  LayoutDashboard,
+  FileText,
+  Kanban,
+  Heart,
   Network,
-  Settings
+  Volume2,
+  Settings as SettingsIcon
 } from 'lucide-react';
 import GlobalSearch from './GlobalSearch';
-import FocusMode from './FocusMode';
+import PomodoroTimer from './PomodoroTimer';
 import DataManager from './DataManager';
+import BackupManager from './BackupManager';
+import Settings from './Settings';
+import { authService } from '@/services/auth';
 import {
   Dialog,
   DialogContent,
@@ -23,7 +28,10 @@ import {
 } from '@/components/ui/dialog';
 
 const Navigation = () => {
-  const { currentPage, setCurrentPage, focusMode } = useAppStore();
+  const { currentPage, setCurrentPage } = useAppStore();
+  const [settingsOpen, setSettingsOpen] = useState(false);
+
+
 
   const navItems = [
     { id: 'dashboard', label: 'Dashboard', icon: LayoutDashboard },
@@ -31,67 +39,55 @@ const Navigation = () => {
     { id: 'tasks', label: 'Tasks', icon: Kanban },
     { id: 'habits', label: 'Habits', icon: Heart },
     { id: 'graph', label: 'Graph', icon: Network },
+    { id: 'sound-test', label: 'Sound', icon: Volume2 },
   ] as const;
 
-  if (focusMode) {
-    return (
-      <div className="flex items-center space-x-4">
-        <div className="text-sm text-muted-foreground">Focus Mode Active</div>
-        <FocusMode />
-      </div>
-    );
-  }
+
 
   return (
-    <div className="flex items-center space-x-4">
-      {/* Main Navigation */}
-      <nav className="flex items-center space-x-1">
-        {navItems.map((item) => {
-          const Icon = item.icon;
-          return (
-            <Button
-              key={item.id}
-              variant={currentPage === item.id ? "default" : "ghost"}
-              size="sm"
-              onClick={() => setCurrentPage(item.id)}
-              className="flex items-center space-x-2"
-            >
-              <Icon className="w-4 h-4" />
-              <span className="hidden sm:inline">{item.label}</span>
-            </Button>
-          );
-        })}
-      </nav>
+    <div className="flex items-center space-x-6">
+      {/* Main Navigation Tabs */}
+      <Tabs value={currentPage} onValueChange={(value) => setCurrentPage(value as any)}>
+        <TabsList className="grid grid-cols-6">
+          {navItems.map((item) => {
+            const Icon = item.icon;
+            return (
+              <TabsTrigger key={item.id} value={item.id} className="flex items-center gap-2">
+                <Icon className="w-4 h-4" />
+                <span className="hidden sm:inline">{item.label}</span>
+              </TabsTrigger>
+            );
+          })}
+        </TabsList>
+      </Tabs>
 
-      {/* Search */}
-      <GlobalSearch />
+      {/* Utility Actions */}
+      <div className="flex items-center space-x-2">
+        {/* Search */}
+        <GlobalSearch />
 
-      {/* Focus Mode & Pomodoro */}
-      <FocusMode />
+        {/* Pomodoro Timer */}
+        <PomodoroTimer />
 
-      {/* Settings Dialog */}
-      <Dialog>
+        {/* Settings Dialog */}
+      <Dialog open={settingsOpen} onOpenChange={setSettingsOpen}>
         <DialogTrigger asChild>
-          <Button size="sm" variant="ghost">
-            <Settings className="w-4 h-4" />
+          <Button size="sm" variant="ghost" title="Settings">
+            <SettingsIcon className="w-4 h-4" />
           </Button>
         </DialogTrigger>
-        <DialogContent>
+        <DialogContent className="max-w-6xl max-h-[90vh] overflow-y-auto">
           <DialogHeader>
             <DialogTitle>Settings</DialogTitle>
             <DialogDescription>
-              Manage your workspace data and preferences
+              Manage your workspace preferences, data, and account settings
             </DialogDescription>
           </DialogHeader>
-          
-          <div className="space-y-4">
-            <div>
-              <h3 className="text-sm font-medium mb-2">Data Management</h3>
-              <DataManager />
-            </div>
-          </div>
+
+          <Settings onClose={() => setSettingsOpen(false)} />
         </DialogContent>
       </Dialog>
+      </div>
     </div>
   );
 };

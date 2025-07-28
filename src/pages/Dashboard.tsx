@@ -44,10 +44,10 @@ const Dashboard = () => {
     <div className="space-y-6">
       {/* Welcome Header */}
       <div className="text-center mb-8">
-        <h1 className="text-3xl font-bold text-slate-800 mb-2">
+        <h1 className="text-3xl font-bold text-foreground mb-2">
           Welcome to FocusFlow
         </h1>
-        <p className="text-slate-600">
+        <p className="text-muted-foreground">
           Your personal productivity operating system
         </p>
       </div>
@@ -60,7 +60,7 @@ const Dashboard = () => {
             <Card key={index} className="relative overflow-hidden">
               <CardHeader className="pb-2">
                 <div className="flex items-center justify-between">
-                  <CardTitle className="text-sm font-medium text-slate-600">
+                  <CardTitle className="text-sm font-medium text-muted-foreground">
                     {stat.title}
                   </CardTitle>
                   <div className={`p-2 rounded-lg bg-gradient-to-r ${stat.color}`}>
@@ -69,10 +69,10 @@ const Dashboard = () => {
                 </div>
               </CardHeader>
               <CardContent>
-                <div className="text-2xl font-bold text-slate-900">
+                <div className="text-2xl font-bold text-foreground">
                   {stat.title === "Focus Score" ? `${stat.value}%` : stat.value}
                 </div>
-                <p className="text-xs text-slate-500 mt-1">
+                <p className="text-xs text-muted-foreground mt-1">
                   {stat.description}
                 </p>
               </CardContent>
@@ -97,18 +97,18 @@ const Dashboard = () => {
             {recentNotes.length > 0 ? (
               <div className="space-y-3">
                 {recentNotes.map((note) => (
-                  <div key={note.id} className="p-3 border border-slate-200 rounded-lg hover:bg-slate-50">
-                    <h4 className="font-medium text-slate-900 truncate">
+                  <div key={note.id} className="p-3 border border-border rounded-lg hover:bg-accent">
+                    <h4 className="font-medium text-foreground truncate">
                       {note.title || "Untitled Note"}
                     </h4>
-                    <p className="text-sm text-slate-600 mt-1 line-clamp-2">
+                    <p className="text-sm text-muted-foreground mt-1 line-clamp-2">
                       {note.content.substring(0, 100)}...
                     </p>
                   </div>
                 ))}
               </div>
             ) : (
-              <p className="text-slate-500 text-center py-8">
+              <p className="text-muted-foreground text-center py-8">
                 No notes yet. Start writing to see them here!
               </p>
             )}
@@ -130,21 +130,21 @@ const Dashboard = () => {
             {urgentTasks.length > 0 ? (
               <div className="space-y-3">
                 {urgentTasks.map((task) => (
-                  <div key={task.id} className="p-3 border border-red-200 rounded-lg bg-red-50">
-                    <h4 className="font-medium text-slate-900">
+                  <div key={task.id} className="p-3 border border-red-200 rounded-lg bg-red-50 dark:border-red-800 dark:bg-red-950">
+                    <h4 className="font-medium text-foreground">
                       {task.title}
                     </h4>
-                    <p className="text-sm text-slate-600 mt-1">
+                    <p className="text-sm text-muted-foreground mt-1">
                       {task.description}
                     </p>
-                    <span className="inline-block mt-2 px-2 py-1 text-xs bg-red-100 text-red-800 rounded">
+                    <span className="inline-block mt-2 px-2 py-1 text-xs bg-red-100 text-red-800 rounded dark:bg-red-900 dark:text-red-200">
                       High Priority
                     </span>
                   </div>
                 ))}
               </div>
             ) : (
-              <p className="text-slate-500 text-center py-8">
+              <p className="text-muted-foreground text-center py-8">
                 No urgent tasks. You're all caught up! 🎉
               </p>
             )}

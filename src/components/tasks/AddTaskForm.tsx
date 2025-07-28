@@ -50,7 +50,7 @@ const AddTaskForm: React.FC = () => {
     return (
       <Button
         variant="ghost"
-        className="w-full border-2 border-dashed border-gray-300 hover:border-gray-400"
+        className="w-full border-2 border-dashed border-muted-foreground/30 hover:border-muted-foreground/50"
         onClick={() => setIsOpen(true)}
       >
         <Plus className="w-4 h-4 mr-2" />
@@ -68,7 +68,7 @@ const AddTaskForm: React.FC = () => {
             placeholder="Task title..."
             value={title}
             onChange={(e) => setTitle(e.target.value)}
-            className="w-full border border-gray-300 rounded px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+            className="w-full border border-input bg-background rounded px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-ring"
             autoFocus
           />
           
@@ -83,7 +83,7 @@ const AddTaskForm: React.FC = () => {
           <select
             value={priority}
             onChange={(e) => setPriority(e.target.value as 'low' | 'medium' | 'high')}
-            className="w-full border border-gray-300 rounded px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+            className="w-full border border-input bg-background rounded px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-ring"
           >
             <option value="low">Low Priority</option>
             <option value="medium">Medium Priority</option>

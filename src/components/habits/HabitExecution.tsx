@@ -82,9 +82,9 @@ const HabitExecution: React.FC = () => {
       <Card className="h-96">
         <CardContent className="flex items-center justify-center h-full">
           <div className="text-center">
-            <Target className="w-12 h-12 text-gray-400 mx-auto mb-4" />
-            <p className="text-gray-600">No habits to execute</p>
-            <p className="text-sm text-gray-500">Go to the Plan tab to create your first habit</p>
+            <Target className="w-12 h-12 text-muted-foreground mx-auto mb-4" />
+            <p className="text-muted-foreground">No habits to execute</p>
+            <p className="text-sm text-muted-foreground opacity-75">Go to the Plan tab to create your first habit</p>
           </div>
         </CardContent>
       </Card>
@@ -95,10 +95,10 @@ const HabitExecution: React.FC = () => {
     <div className="space-y-6">
       {/* Active Session */}
       {activeHabit && (
-        <Card className="border-blue-200 bg-blue-50">
+        <Card className="border-blue-200 bg-blue-50 dark:border-blue-800 dark:bg-blue-950">
           <CardHeader>
             <CardTitle className="flex items-center space-x-2">
-              <Timer className="w-5 h-5 text-blue-600" />
+              <Timer className="w-5 h-5 text-blue-600 dark:text-blue-400" />
               <span>Active Session</span>
             </CardTitle>
           </CardHeader>
@@ -108,7 +108,7 @@ const HabitExecution: React.FC = () => {
                 <h3 className="text-xl font-bold">
                   {habits.find(h => h.id === activeHabit)?.name}
                 </h3>
-                <div className="text-3xl font-mono font-bold text-blue-600 mt-2">
+                <div className="text-3xl font-mono font-bold text-blue-600 dark:text-blue-400 mt-2">
                   {formatTime(sessionTime)}
                 </div>
               </div>
@@ -147,14 +147,14 @@ const HabitExecution: React.FC = () => {
         <CardContent>
           {todayHabits.length === 0 ? (
             <div className="text-center py-8">
-              <CheckCircle className="w-12 h-12 text-green-500 mx-auto mb-4" />
-              <p className="text-green-600 font-medium">All habits completed for today!</p>
-              <p className="text-sm text-gray-500">Great job! Come back tomorrow.</p>
+              <CheckCircle className="w-12 h-12 text-green-500 dark:text-green-400 mx-auto mb-4" />
+              <p className="text-green-600 dark:text-green-400 font-medium">All habits completed for today!</p>
+              <p className="text-sm text-muted-foreground">Great job! Come back tomorrow.</p>
             </div>
           ) : (
             <div className="space-y-4">
               {todayHabits.map((habit, index) => (
-                <div key={habit.id} className="p-4 border rounded-lg hover:bg-gray-50">
+                <div key={habit.id} className="p-4 border rounded-lg hover:bg-accent">
                   <div className="flex items-center justify-between">
                     <div className="flex items-center space-x-3">
                       <div
@@ -163,7 +163,7 @@ const HabitExecution: React.FC = () => {
                       />
                       <div>
                         <h4 className="font-medium">{habit.name}</h4>
-                        <p className="text-sm text-gray-500">
+                        <p className="text-sm text-muted-foreground">
                           Current streak: {habit.streak} days
                         </p>
                       </div>
@@ -196,21 +196,21 @@ const HabitExecution: React.FC = () => {
       {completedToday.length > 0 && (
         <Card>
           <CardHeader>
-            <CardTitle className="text-green-600">
+            <CardTitle className="text-green-600 dark:text-green-400">
               Completed Today ({completedToday.length})
             </CardTitle>
           </CardHeader>
           <CardContent>
             <div className="space-y-2">
               {completedToday.map((habit) => (
-                <div key={habit.id} className="flex items-center space-x-3 p-3 bg-green-50 border border-green-200 rounded-lg">
-                  <CheckCircle className="w-5 h-5 text-green-600" />
+                <div key={habit.id} className="flex items-center space-x-3 p-3 bg-green-50 border border-green-200 rounded-lg dark:bg-green-950 dark:border-green-800">
+                  <CheckCircle className="w-5 h-5 text-green-600 dark:text-green-400" />
                   <div
                     className="w-4 h-4 rounded-full"
                     style={{ backgroundColor: habit.color }}
                   />
                   <span className="font-medium">{habit.name}</span>
-                  <span className="text-sm text-green-600 ml-auto">✓ Done</span>
+                  <span className="text-sm text-green-600 dark:text-green-400 ml-auto">✓ Done</span>
                 </div>
               ))}
             </div>
@@ -233,7 +233,7 @@ const HabitExecution: React.FC = () => {
               value={(completedToday.length / habits.length) * 100} 
               className="h-3"
             />
-            <p className="text-xs text-gray-500 text-center">
+            <p className="text-xs text-muted-foreground text-center">
               {Math.round((completedToday.length / habits.length) * 100)}% complete
             </p>
           </div>

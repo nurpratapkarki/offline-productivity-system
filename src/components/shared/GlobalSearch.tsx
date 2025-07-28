@@ -15,12 +15,11 @@ import { Button } from '@/components/ui/button';
 
 const GlobalSearch = () => {
   const [open, setOpen] = useState(false);
-  const { 
-    searchQuery, 
-    setSearchQuery, 
-    searchResults, 
-    performSearch, 
-    setCurrentPage 
+  const {
+    searchQuery,
+    setSearchQuery,
+    searchResults,
+    setCurrentPage
   } = useAppStore();
 
   useEffect(() => {
@@ -34,18 +33,25 @@ const GlobalSearch = () => {
     return () => document.removeEventListener('keydown', down);
   }, []);
 
-  useEffect(() => {
-    performSearch();
-  }, [searchQuery, performSearch]);
+
 
   const handleSelectNote = (noteId: string) => {
     setCurrentPage('notes');
     setOpen(false);
+    setSearchQuery(''); // Clear search when closing
   };
 
   const handleSelectTask = (taskId: string) => {
     setCurrentPage('tasks');
     setOpen(false);
+    setSearchQuery(''); // Clear search when closing
+  };
+
+  const handleOpenChange = (open: boolean) => {
+    setOpen(open);
+    if (!open) {
+      setSearchQuery(''); // Clear search when dialog closes
+    }
   };
 
   return (
@@ -62,7 +68,7 @@ const GlobalSearch = () => {
         </kbd>
       </Button>
       
-      <CommandDialog open={open} onOpenChange={setOpen}>
+      <CommandDialog open={open} onOpenChange={handleOpenChange}>
         <CommandInput 
           placeholder="Search notes, tasks, and more..." 
           value={searchQuery}
