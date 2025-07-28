@@ -9,7 +9,6 @@ import {
   Kanban,
   Heart,
   Network,
-  Volume2,
   Settings as SettingsIcon
 } from 'lucide-react';
 import GlobalSearch from './GlobalSearch';
@@ -39,7 +38,6 @@ const Navigation = () => {
     { id: 'tasks', label: 'Tasks', icon: Kanban },
     { id: 'habits', label: 'Habits', icon: Heart },
     { id: 'graph', label: 'Graph', icon: Network },
-    { id: 'sound-test', label: 'Sound', icon: Volume2 },
   ] as const;
 
 
@@ -48,7 +46,7 @@ const Navigation = () => {
     <div className="flex items-center space-x-6">
       {/* Main Navigation Tabs */}
       <Tabs value={currentPage} onValueChange={(value) => setCurrentPage(value as any)}>
-        <TabsList className="grid grid-cols-6">
+        <TabsList className="grid grid-cols-5">
           {navItems.map((item) => {
             const Icon = item.icon;
             return (

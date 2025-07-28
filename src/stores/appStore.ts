@@ -43,7 +43,7 @@ export interface PomodoroSession {
 
 interface AppState {
   // Navigation
-  currentPage: 'dashboard' | 'notes' | 'tasks' | 'habits' | 'graph' | 'sound-test';
+  currentPage: 'dashboard' | 'notes' | 'tasks' | 'habits' | 'graph';
   setCurrentPage: (page: AppState['currentPage']) => void;
   
   // Search

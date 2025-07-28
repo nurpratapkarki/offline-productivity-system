@@ -6,7 +6,6 @@ import Notes from "@/pages/Notes";
 import Tasks from "@/pages/Tasks";
 import Habits from "@/pages/Habits";
 import Graph from "@/pages/Graph";
-import SoundTest from "@/pages/SoundTest";
 import { authService } from "@/services/auth";
 import { useEffect, useState } from "react";
 
@@ -66,8 +65,6 @@ const AppLayout = () => {
         return <Habits />;
       case 'graph':
         return <Graph />;
-      case 'sound-test':
-        return <SoundTest />;
       default:
         return <Dashboard />;
     }
